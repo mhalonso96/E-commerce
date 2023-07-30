@@ -5,7 +5,6 @@ from django.forms import ValidationError, ModelForm
 from utils.valida_cep import consulta_cep
 from utils.validador_cpf import valida_cpf
 
-
 class Perfil(models.Model):
     class Meta:
         verbose_name = 'Perfil'
@@ -17,12 +16,12 @@ class Perfil(models.Model):
     cpf = models.CharField(max_length= 11)
     cep = models.CharField(max_length= 8)
     endereco = models.CharField(max_length= 50, blank= True)
-    numero = models.CharField(max_length= 5, blank= True)
+    numero = models.CharField(max_length= 5)
     bairro = models.CharField(max_length= 30, blank= True)
     cidade = models.CharField(max_length= 30, blank= True)
     complemento = models.CharField(max_length= 30, blank= True)
     estado = models.CharField(
-        default= None,
+        default= 'AC',
         max_length= 2,
         choices= (
             ('AC', 'Acre'),
@@ -55,7 +54,7 @@ class Perfil(models.Model):
         )
     )
     def __str__(self) -> str:
-        return f'{self.usuario.first_name} {self.usuario.last_name}'
+        return f'{self.usuario}'
     
     def clean(self):
         error_messages = {}

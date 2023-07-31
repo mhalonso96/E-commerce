@@ -4,8 +4,6 @@
 *.pyc
 __pycache__
 db.sqlite3
-templates/
-static/
 media/
 project/local_settings.py
 
